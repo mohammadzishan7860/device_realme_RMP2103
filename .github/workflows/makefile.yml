@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ full_oppo8786_wlan-user-11-RP1A.200720.011-378-release-keys-Mon-Mar-7-09-43-58-CST-2022 ]
+  pull_request:
+    branches: [ full_oppo8786_wlan-user-11-RP1A.200720.011-378-release-keys-Mon-Mar-7-09-43-58-CST-2022 ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: configure
+      run: ./configure
+      
+    - name: Install dependencies
+      run: make
+      
+    - name: Run check
+      run: make check
+      
+    - name: Run distcheck
+      run: make distcheck
